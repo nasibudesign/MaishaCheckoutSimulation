@@ -1,12 +1,11 @@
 package com.maishapay.myshop;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maishapay.checkout.MaishaPay;
+
 import com.maishapay.myshop.service.ApiServices;
 import com.maishapay.myshop.service.AppFactory;
 
@@ -50,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
         ApiServices apiServices = AppFactory.getRetrofit().create(ApiServices.class);
         Call<List<Product>> call = apiServices.products();
         progressDialog.setVisibility(View.VISIBLE);
-        textViewError.setText("Chargment");
+        textViewError.setText(R.string.loading);
         _button.setVisibility(View.GONE);
 
         call.enqueue(new Callback<List<Product>>() {
             @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+            public void onResponse(@NonNull Call<List<Product>> call,@NonNull Response<List<Product>> response) {
                 progressDialog.setVisibility(View.VISIBLE);
                 textViewError.setVisibility(View.VISIBLE);
                 if (response.isSuccessful()) {
@@ -68,15 +68,15 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     progressDialog.setVisibility(View.GONE);
                     textViewError.setVisibility(View.VISIBLE);
-                    textViewError.setText("Erreur Survenue");
+                    textViewError.setText(R.string.error_happened);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Product>> call,@NonNull Throwable t) {
                 progressDialog.setVisibility(View.GONE);
                 textViewError.setVisibility(View.VISIBLE);
-                textViewError.setText("Erreur Survenue");
+                textViewError.setText(R.string.error_happened);
             }
         });
 
