@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         _button = findViewById(R.id.refreshBtn);
         progressDialog = findViewById(R.id.progressLoadingDialog);
 
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         ApiServices apiServices = AppFactory.getRetrofit().create(ApiServices.class);
         Call<List<Product>> call = apiServices.products();
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     progressDialog.setVisibility(View.GONE);
                     textViewError.setVisibility(View.GONE);
                     productList = response.body();
-                    adapter = new MyAdapter(productList, MainActivity.this);
+                    adapter = new MyAdapter(productList, MainActivity.this, MaishaPay.USD);
                     recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
                     recyclerView.setAdapter(adapter);
                 }else {
