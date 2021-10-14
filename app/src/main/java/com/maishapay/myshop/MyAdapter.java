@@ -51,7 +51,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 MaishaPay.checkout((Activity) context,
-                        MaishaPayServices.yourApiOptions,
+                        "null",
                         MaishaPayServices.yourApiKey,
                         MaishaPayServices.yourGateway_mode,
                         String.valueOf(currentItem.getPrice()),
