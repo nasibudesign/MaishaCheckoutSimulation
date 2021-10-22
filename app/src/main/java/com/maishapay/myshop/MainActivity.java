@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     progressDialog.setVisibility(View.GONE);
                     textViewError.setVisibility(View.GONE);
                     productList = response.body();
-                    adapter = new MyAdapter(productList, MainActivity.this, MaishaPay.USD);
+                    adapter = new MyAdapter(productList, MainActivity.this, MaishaPay.CDF);
                     recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
                     recyclerView.setAdapter(adapter);
                 }else {
@@ -88,16 +88,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == MaishaPay.maishaPayCheckoutActivityRequestCode) {
             if (resultCode == MaishaPay.checkoutSuccess) {
-                Log.e("succes", MaishaPay.checkoutSuccess + "");
+                Log.e("myShop: succes", MaishaPay.checkoutSuccess + "");
                 myAlert("succes","Achat effectuer",SweetAlertDialog.SUCCESS_TYPE);
             } else if (resultCode == MaishaPay.checkoutCancel) {
-                Log.e("cancel", MaishaPay.checkoutCancel + "");
+                Log.e("myShop: cancel", MaishaPay.checkoutCancel + "");
                 myAlert("Annuler","Achat Annuler",SweetAlertDialog.WARNING_TYPE);
             } else if (resultCode == MaishaPay.checkoutFailure) {
-                Log.e("failure", MaishaPay.checkoutFailure + "");
+                Log.e("myShop: failure", MaishaPay.checkoutFailure + "");
                 myAlert("Echec","Une erreur est survenue",SweetAlertDialog.ERROR_TYPE);
             } else {
-                Log.e("unknown", "unknown error");
+                Log.e("myShop: unknown", "unknown error");
             }
         } else {
             Log.e("unkown request code", "uknown");

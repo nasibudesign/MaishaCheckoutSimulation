@@ -52,15 +52,16 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         String price = currentItem.getPrice() + " " + currency;
         holder.priceText.setText(price);
         holder.nameText.setText(currentItem.getTitle());
-        holder.payButton.setOnClickListener(v -> MaishaPay.checkout((Activity) context,
-                "null",
-                MaishaPayServices.yourApiKey,
-                MaishaPayServices.yourGateway_mode,
-                String.valueOf(currentItem.getPrice()),
-                MaishaPay.CDF,
-                currentItem.getDescription(),
-                MaishaPayServices.yourLogo_url
-        ));
+        holder.payButton.setOnClickListener(v ->
+                MaishaPay.checkout((Activity) context,
+                        "null",
+                        MaishaPayServices.yourApiKey,
+                        MaishaPayServices.yourGateway_mode,
+                        String.valueOf(currentItem.getPrice()),
+                        currency,
+                        currentItem.getDescription(),
+                        MaishaPayServices.yourLogo_url
+                ));
     }
 
     @Override
